@@ -20,9 +20,38 @@ namespace MethodenKostprijsBerekenen.Wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
+
+        //Methoden
+        #region Methoden
+        double BerekenTotaalPrijs(double dagPrijs, int aantaldagen)
+        {
+            double totalePrijs;
+            totalePrijs = dagPrijs * aantaldagen;
+            return totalePrijs;
+        } 
+        #endregion
         public MainWindow()
         {
             InitializeComponent();
         }
+        //eventhandlers
+        #region Event Handlers
+        private void btnBerekenTotaalPrijs_Click(object sender, RoutedEventArgs e)
+        {
+            double dagPrijs = double.Parse(txtDagPrijs.Text);
+            int aantalDagen = int.Parse(txtAantalDagen.Text);
+            double totalePrijs;
+            totalePrijs = BerekenTotaalPrijs(dagPrijs, aantalDagen);
+            lblTotaalPrijs.Content = totalePrijs.ToString("0.00");
+        }
+
+        private void sldAantalDagen_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+            txtAantalDagen.Text = sldAantalDagen.Value.ToString("0");
+        } 
+        #endregion
     }
 }
